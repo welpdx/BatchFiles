@@ -1,5 +1,5 @@
 ::::::::::::::::::::::::::::::::::::::::::::
-:: Flush V1.1
+:: Flush V1.2
 :: Welpdx
 :: Resets wireless network card when it hiccups
 ::::::::::::::::::::::::::::::::::::::::::::
@@ -78,6 +78,10 @@
  ipconfig /release
 
  ipconfig /flushdns
+
+:This Windows Network Diagnostics really does the trick, in this exact spot.
+:Don't ask me why
+ %windir%\system32\Rundll32.exe ndfapi,NdfRunDllDiagnoseIncident
 
  ipconfig /renew
 
