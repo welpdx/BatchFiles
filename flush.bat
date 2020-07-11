@@ -72,18 +72,18 @@
 
  netsh int ip reset c:\resetlog.txt
 
-:Pause because interesting things happen
+ REM Pause because interesting things happen
  pause
 
  ipconfig /release
 
  ipconfig /flushdns
 
-:This Windows Network Diagnostics really does the trick, in this exact spot.
-:Don't ask me why
+ REM This Windows Network Diagnostics really does the trick, in this exact spot.
+ REM Don't ask me why
  %windir%\system32\Rundll32.exe ndfapi,NdfRunDllDiagnoseIncident
 
  ipconfig /renew
 
-:I want to see the magic first hand before the cmd closes
+ REM I want to see the magic first hand before the cmd closes
  pause
