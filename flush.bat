@@ -1,7 +1,10 @@
 ::::::::::::::::::::::::::::::::::::::::::::
-:: Elevate.cmd - Version 4
-:: Automatically check & get admin rights
+:: Flush V1.1
+:: Welpdx
+:: Resets wireless network card when it hiccups
 ::::::::::::::::::::::::::::::::::::::::::::
+
+ REM If no admin privilege, elevates privilege
  @echo off
  CLS
  ECHO.
@@ -53,20 +56,30 @@
  if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 
  ::::::::::::::::::::::::::::
- ::START
+ :: Starts the Code for the Actual Resetting
  ::::::::::::::::::::::::::::
- REM Run shell as admin (example) - put here code as you like
+
  ECHO %batchName% Arguments: P1=%1 P2=%2 P3=%3 P4=%4 P5=%5 P6=%6 P7=%7 P8=%8 P9=%9
 
-ipconfig /release
 
-ipconfig /flushdns
+ REM I gotta be honest Idk what these do but google recommends it
 
-ipconfig /renew
+ netsh winsock reset
 
+ netsh int ip reset
 
-pause
+ netsh int ip reset resetlog.txt
 
-//https://goo.gl/khvYbC (elevated)
-//https://goo.gl/k1RiwX (battleexe)
-// cmd /k
+ netsh int ip reset c:\resetlog.txt
+
+:Pause because interesting things happen
+ pause
+
+ ipconfig /release
+
+ ipconfig /flushdns
+
+ ipconfig /renew
+
+:I want to see the magic first hand before the cmd closes
+ pause
